@@ -54,8 +54,8 @@ function Test({ records }) {
 
 export async function getStaticProps() {
     const airtable = new AirtablePlus({
-        baseID: 'appYPf1EbZC6Q4wap',
-        apiKey: 'keyDklevGNYkASXBt',
+        baseID: 'AIRTABLE_BASE_ID',
+        apiKey: 'AIRTABLE_API_KEY',
         tableName: 'Daily Action Content Database',
     });
     
