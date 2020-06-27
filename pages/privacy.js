@@ -1,30 +1,10 @@
 import Head from 'next/head'
-import DefaultLayout from '../layouts';
 import { useSession } from 'next-auth/client'
-const AirtablePlus = require('airtable-plus');
-const fetch = require('isomorphic-unfetch');
+import DefaultLayout from '../layouts';
 
-function Home( records ) {
+
+export default function Home() {
   const [ session, loading ] = useSession()
-  const content = records.records
-
-  async function sendmail(){
-   const response = await fetch('/api/sendmail', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify('this is the body')
-    },
-    console.log(response)
-  )}
-
-  const dummyRecords = [
-    {'id':1, title: 'title1'},
-    {'id':2, title: 'title2'},
-    {'id':3, title: 'title3'},
-  ]
 
   return (
     <div className="container">
@@ -35,54 +15,7 @@ function Home( records ) {
       </Head>
 
       <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Every Day Action</a>
-        </h1>
-
-        <p className="description">
-          Make anti-Racism a Habit
-        </p>
-        <p>
-
-          <button onClick={() => sendmail()}>My Button</button>
-
-        </p>
-
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>{content[0].fields['Resource Title']} &rarr;</h3>
-            by {content[0].fields['Author']}
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>{content[1].fields['Resource Title']} &rarr;</h3>
-
-            {!content[0].fields['Author'] && <>
-            <br></br>
-        </>}
-        {content[0].fields['Author'] && <>
-         by {content[0].fields['Author']}
-        </>}
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>{content[2].fields['Resource Title']} &rarr;</h3>
-            by {content[2].fields['Author']}
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>{content[3].fields['Resource Title']} &rarr;</h3>
-            <p>
-              by {content[3].fields['Author']}
-            </p>
-          </a>
-        </div>
+       <h1>Privacy</h1>
       </main>
 
       <footer>
@@ -106,7 +39,6 @@ function Home( records ) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          background: #3C4C96;
         }
 
         main {
@@ -143,7 +75,7 @@ function Home( records ) {
         }
 
         .title a {
-          color: #3C4C96;
+          color: #0070f3;
           text-decoration: none;
         }
 
@@ -203,8 +135,8 @@ function Home( records ) {
         .card:hover,
         .card:focus,
         .card:active {
-          color: #3C4C96;
-          border-color: #3C4C96;
+          color: #0070f3;
+          border-color: #0070f3;
         }
 
         .card h3 {
@@ -244,41 +176,7 @@ function Home( records ) {
           box-sizing: border-box;
         }
       `}</style>
-    </DefaultLayout>
+      </DefaultLayout>
     </div>
   )
-
 }
-
-export async function getStaticProps() {
-  const airtable = new AirtablePlus({
-      baseID: AIRTABLE_BASE_ID,
-      apiKey: AIRTABLE_API_KEY,
-      tableName: 'Daily Action Content Database',
-  });
-  const homeFour = ['rec1O1Ytwuyxr9QjG', 'rec3UgGRmHx8JWHJe', 'recIQsRWPQLvXHwRj', 'recNYHwjOSaQu340a']
-  const recordList = []
-
-async function asyncForEach(array, callback) {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
-  }
-}
-
-const start = async () => {
-  await asyncForEach(homeFour, async (record) => {
-    const item = await airtable.find(record)
-    recordList.push(item)
-  });
-  return recordList
-}
-const records = await start();
-
-return {
-  props: {
-    records: records,
-  },
-}
-}
-
-export default Home

@@ -1,0 +1,64 @@
+{
+    "records":[
+       {
+          "id":"recJYPHOdlqvEQI8g",
+          "fields":{
+             "Resource Title":"The Coronavirus Was an Emergency Until Trump Found Out Who Was Dying",
+             "Theme":[
+                "Healthcare"
+             ],
+             "Action Category":"Read",
+             "Action Sub-Category":"Article",
+             "Author":"Adam Serwer",
+             "Proficiency":[
+                "Novice"
+             ],
+             "Summary":"The pandemic has exposed the bitter terms of our racial contract, which deems certain lives of greater value than others.",
+             "URL":"https://www.theatlantic.com/ideas/archive/2020/05/americas-racial-contract-showing/611389/",
+             "Aggregator Source":"Anti-Racism Resources Compiled by Sarah Sophie Flicker & Alyssa Klein in May 2020",
+             "Inputer":"PA"
+          },
+          "createdTime":"2020-06-22T00:28:45.000Z"
+       },
+       {
+          "id":"recESXAwcnTeb1lE3",
+          "fields":{
+             "Resource Title":"The 1619 Project",
+             "Theme":[
+                "History"
+             ],
+             "Action Category":"Read",
+             "Action Sub-Category":"Magazine",
+             "Author":"Nikole Hannah Jones",
+             "Proficiency":[
+                "Novice"
+             ],
+             "Summary":"The 1619 Project is an ongoing initiative from The New York Times Magazine that began in August 2019, the 400th anniversary of the beginning of American slavery. It aims to reframe the country’s history by placing the consequences of slavery and the contributions of black Americans at the very center of our national narrative.",
+             "URL":"https://www.nytimes.com/interactive/2019/08/14/magazine/1619-america-slavery.html",
+             "Aggregator Source":"Anti-Racism Resources Compiled by Sarah Sophie Flicker & Alyssa Klein in May 2020",
+             "Inputer":"PA"
+          },
+          "createdTime":"2020-06-22T00:28:45.000Z"
+       },
+       {
+          "id":"recPrpmBBRVY3bDjJ",
+          "fields":{
+             "Resource Title":"The Combahee River Collective Statement",
+             "Theme":[
+                "Gender"
+             ],
+             "Action Category":"Read",
+             "Action Sub-Category":"Article",
+             "Author":"Zillah Eisenstein",
+             "Proficiency":[
+                "Novice"
+             ],
+             "Summary":"Collective of Black feminists who have been meeting together since 1974. Involved in the process of defining and clarifyig their politics while at the same time doing political work within our own group in coalition with other progressive organizations and movements",
+             "URL":"http://circuitous.org/scraps/combahee.html",
+             "Aggregator Source":"Anti-Racism Resources Compiled by Sarah Sophie Flicker & Alyssa Klein in May 2020",
+             "Inputer":"PA"
+          },
+          "createdTime":"2020-06-22T00:28:45.000Z"
+       }
+    ]
+ }

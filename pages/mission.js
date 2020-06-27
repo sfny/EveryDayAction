@@ -1,11 +1,14 @@
 import Head from 'next/head'
 import { useSession } from 'next-auth/client'
+import DefaultLayout from '../layouts';
+
 
 export default function Home() {
   const [ session, loading ] = useSession()
 
   return (
     <div className="container">
+      <DefaultLayout>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
@@ -173,6 +176,7 @@ export default function Home() {
           box-sizing: border-box;
         }
       `}</style>
+      </DefaultLayout>
     </div>
   )
 }
