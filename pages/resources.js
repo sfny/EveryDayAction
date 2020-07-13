@@ -41,7 +41,7 @@ export async function getStaticProps() {
     const airtable = new AirtablePlus({
         baseID: process.env.AIRTABLE_BASE_ID,
         apiKey: process.env.AIRTABLE_API_KEY,
-        tableName: 'Daily Action Content Database',
+        tableName: 'Long Form Website Content Database',
     });
 
     const getRecords = async () => {

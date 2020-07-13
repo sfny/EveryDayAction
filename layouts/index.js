@@ -5,6 +5,8 @@ const Everything = styled.div`
 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 background: linear-gradient(0deg, #26282C 35%, #35373B 100%);
 color: #F6F6F6;
+display: flex;
+flex-direction: column;
 `
 
 const TopNavBG = styled.div`
@@ -65,12 +67,16 @@ const NavListItem = styled.li `
   } 
 `
 
+const Main = styled.div`
+justify-content: center;
+`
+
 const DefaultLayout = ({ children }) => (
     <Everything>
     <header>
     <TopNavBG>
   
-    <Logo><Link href="/"><a textdecoration="none">EDA</a></Link> </Logo>
+    <Logo><Link href="/"><a textDecoration="none">EDA</a></Link> </Logo>
     <TopNavMenu>
     
         <NavListItem>
@@ -97,7 +103,7 @@ const DefaultLayout = ({ children }) => (
     </TopNavBG>
     </header>
 
-    <main>{children}</main>
+    <Main>{children}</Main>
     <footer>
         <TopNavBG justifycontent="space-around">
         <BottomNavMenu>

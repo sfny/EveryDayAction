@@ -49,6 +49,7 @@ export default function Home() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          min-height: 650px;
         }
 
         footer {
