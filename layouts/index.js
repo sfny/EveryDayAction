@@ -3,6 +3,8 @@ import Link from 'next/link';
 
 const Everything = styled.div`
 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+background: linear-gradient(0deg, #26282C 35%, #35373B 100%);
+color: #F6F6F6;
 `
 
 const TopNavBG = styled.div`
@@ -22,12 +24,8 @@ const Logo = styled.h1`
 display: flex;
 justify-content: center;
 a{ text-decoration: none;
-    color: #3C4C96;}
+    color: #F6F6F6;}
 `;
-
-const OutlineLogo = styled.div`
-margin-right: 4rem;
-`
 
 const TopNavMenu = styled.ul`
   display: flex;
@@ -60,9 +58,9 @@ const NavListItem = styled.li `
   font-style: normal;
   font-weight: bold;
   a{ text-decoration: none;
-  color: #3C4C96}
+  color: #F6F6F6}
   a:hover{
-    color: #FFB001;
+    color: #A144F2;
     transition-delay:.05s;
   } 
 `
@@ -71,10 +69,8 @@ const DefaultLayout = ({ children }) => (
     <Everything>
     <header>
     <TopNavBG>
-    
-    <Logo><Link href="/"><a text-decoration="none">EDA</a></Link> </Logo>
-    
-
+  
+    <Logo><Link href="/"><a textdecoration="none">EDA</a></Link> </Logo>
     <TopNavMenu>
     
         <NavListItem>
@@ -88,8 +84,8 @@ const DefaultLayout = ({ children }) => (
           </Link>
         </NavListItem>
         <NavListItem>
-          <Link href="/longform">
-            <a>LongForm</a>
+          <Link href="/resources">
+            <a>Resources</a>
           </Link>
         </NavListItem>
         <NavListItem>
@@ -100,6 +96,7 @@ const DefaultLayout = ({ children }) => (
     </TopNavMenu>
     </TopNavBG>
     </header>
+
     <main>{children}</main>
     <footer>
         <TopNavBG justifycontent="space-around">
@@ -117,6 +114,20 @@ const DefaultLayout = ({ children }) => (
           </BottomNavMenu>
           </TopNavBG>
     </footer>
+    <style jsx global>{`
+        html,
+        body {
+          padding: 0;
+          margin: 0;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+            sans-serif;
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+      `}</style>
     </Everything>
   );
   

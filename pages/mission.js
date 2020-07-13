@@ -16,6 +16,7 @@ export default function Home() {
 
       <main>
        <h1>Mission</h1>
+       <p>Our mission is to empower YOU to take action in your everyday life to combat racism and systemic injustice in your community</p>
       </main>
 
       <footer>
