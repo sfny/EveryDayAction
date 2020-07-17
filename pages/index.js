@@ -4,8 +4,10 @@ import { useSession } from 'next-auth/client'
 import styled from 'styled-components';
 
 import {ButtonPrimary, ButtonSecondary} from '../lib/designsystem/Button'
-import HomeImage from '../public/Illustration.svg'
-import CheckMark from '../public/check_EDA.svg';
+//import HomeImage from '../lib/reactSVG'
+//import MainImage from '../public/Illustration.png'
+
+//import CheckMark from '../public/check_EDA.svg';
 import {CheckY, CheckB, CheckP} from '../lib/designsystem/Checkmark'
 import HomeCard from '../lib/designsystem/HomeCard'
 
@@ -86,7 +88,7 @@ function Home( records ) {
           </SimpleBox>
           <SimpleBox>
             <ImageWrap>
-              <HomeImage/>
+              <img src={`${process.env.VERCEL_URL}/Illustration.png`}/>
             </ImageWrap>
           </SimpleBox>
         </Row>
@@ -95,21 +97,21 @@ function Home( records ) {
         <Row >
           <Tile width="222px"> 
             <CheckY>
-              <CheckMark/>
+
             </CheckY>
             <p>Step 1</p>
           <h3>Sign up</h3>
         </Tile>
           <Tile width="222px"> 
             <CheckB>
-              <CheckMark/>
+
             </CheckB>
           <p>Step 2</p>
             <h3>Get Action Prompt</h3>
           </Tile>
           <Tile width="222px"> 
             <CheckP>
-              <CheckMark/>
+
             </CheckP>
           <p>Step 3</p>
           <h3>Take Action</h3>

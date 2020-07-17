@@ -1,9 +1,8 @@
 import Head from 'next/head'
-const fetch = require('isomorphic-unfetch');
-const AirtablePlus = require('airtable-plus');
 import DefaultLayout from '../layouts';
 import Card from '../lib/designsystem/HomeCard'
 import styled from 'styled-components';
+import { getLongform } from '../lib/getFromCMS'
 
 const Outer = styled.div`
   display: flex;
@@ -12,7 +11,7 @@ const Outer = styled.div`
 `
 
 export default function Resources( recordlist ) {
-
+  const records = recordlist
 
   return (
       <DefaultLayout>
@@ -22,7 +21,7 @@ export default function Resources( recordlist ) {
       </Head>
    <Outer>
 
-        {recordlist.records.map((anObjectMapped, index) => {
+        {records.myRecords.map((anObjectMapped, index) => {
             if (anObjectMapped.fields['Resource Title']){
               return (
                 <Card key={`${anObjectMapped.id}`} title={anObjectMapped.fields['Resource Title']} author={anObjectMapped.fields['Author']} id={anObjectMapped.id}/>
@@ -38,22 +37,10 @@ export default function Resources( recordlist ) {
 }
 
 export async function getStaticProps() {
-    const airtable = new AirtablePlus({
-        baseID: process.env.AIRTABLE_BASE_ID,
-        apiKey: process.env.AIRTABLE_API_KEY,
-        tableName: 'Long Form Website Content Database',
-    });
-
-    const getRecords = async () => {
-        const allRecords =  await airtable.read()
-        return allRecords
-    }
-
-    const records = await getRecords();
-
-    return {
+const myRecords = await getLongform()
+  return {
       props: {
-        records,
-      }
+        myRecords,
+      },
     }
 }

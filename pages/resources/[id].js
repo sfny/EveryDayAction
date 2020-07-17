@@ -1,8 +1,11 @@
 import { useRouter } from 'next/router'
-const AirtablePlus = require('airtable-plus');
 import DefaultLayout from '../../layouts';
 import styled from 'styled-components';
 import Link from 'next/link'
+import absoluteUrl from "next-absolute-url";
+import fetch from 'isomorphic-unfetch'
+import { getLongform } from '../../lib/getFromCMS'
+
 
 const Outer = styled.div`
 display: flex;
@@ -46,7 +49,10 @@ align-items: baseline;
 `
 
 
-const Post = ({ post } ) => {
+const Post =  ({ record }) => {
+  console.log(typeof(record))
+    const post = record
+
   const {
         "Summary": summary,
         "Theme": theme,
@@ -63,8 +69,8 @@ const Post = ({ post } ) => {
   return ( 
     <DefaultLayout>
         <Outer>
-            <Background>
-                <Row>
+             <Background>
+             <Row>
                     <h2>{post.fields["Resource Title"]}</h2>
                 </Row>
                 <Row>
@@ -79,50 +85,50 @@ const Post = ({ post } ) => {
                         <Section><h5>Aggregator:</h5><p>{aggregator}</p></Section>
                         <Section><h5>Source:</h5><p>{source}</p></Section>
                     </ColSimple>
-                </Row>
+                </Row> 
             </Background>
         </Outer>
     </DefaultLayout>
   )
 }
-  
-  export async function getStaticPaths() {
-    const airtable = new AirtablePlus({
-        baseID: process.env.AIRTABLE_BASE_ID,
-        apiKey: process.env.AIRTABLE_API_KEY,
-        tableName: 'Long Form Website Content Database',
-    });
 
-    const getRecords = async () => {
-        const allRecords =  await airtable.read()
-        return allRecords
+export async function getStaticPaths() {
+
+  //const res = await getLongform()
+  //const myRecords = await res
+  try{
+
+  const url = process.env.AIRTABLE_URL_LONGFORM
+    const data = await fetch(url, {
+        "headers": {"Authorization": `Bearer ${process.env.AIRTABLE_API_KEY}`}
+    })
+    .then(res => res.json())
+    .then((data) => {
+        return data.records
+    })
+
+  const paths = await data.map((post) => ({
+    params: { id: post.id },
+  }))
+
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: false } means other routes should 404.
+  return { paths, fallback: false }
+}
+catch(e){console.log(e)}
+}
+
+export async function getStaticProps({ params }) {
+    const myRecords = await getLongform()
+
+    const record = await myRecords.find(rcrd => rcrd.id == params.id); 
+
+      return {
+          props: {
+                record
+          },
+        }
     }
-
-    const recordList = await getRecords();
-
-    const paths = await recordList.map((record) => ({
-      params: { id: record.id.toString() },
-    }))
-    
-    // We'll pre-render only these paths at build time.
-    // { fallback: false } means other routes should 404.
-    return { paths, fallback: false }
-  }
-  
-  // This also gets called at build time
-  export async function getStaticProps({ params }) {
-    // params contains the record `id`.
-
-    const airtable = new AirtablePlus({
-        baseID: process.env.AIRTABLE_BASE_ID,
-        apiKey: process.env.AIRTABLE_API_KEY,
-        tableName: 'Long Form Website Content Database',
-    });
-
-    const post = await airtable.find(`${params.id}`);
-  
-    // Pass post data to the page via props
-    return { props: { post } }
-  }
 
 export default Post

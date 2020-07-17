@@ -4,7 +4,7 @@ import Providers from 'next-auth/providers'
 // For more information on options, go to
 // https://next-auth.js.org/configuration/options
 const options = {
-  site: process.env.SITE,
+  site: process.env.VERCEL_URL,
   providers: [
     // https://next-auth.js.org/providers/email
     Providers.Email({
